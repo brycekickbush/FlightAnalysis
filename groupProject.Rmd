@@ -3,16 +3,30 @@ title: "Group Project"
 output: html_notebook
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
-
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
-
 ```{r}
-raw_flights = read_tsv("../../data/flight_edges.tsv")
+library(tidyverse)
+raw_flights = read_tsv("../data/flight_edges.tsv")
+city_data = read_csv("../data/GDP_city.csv")
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+```{r}
+#Filters only flights from 2009
+flights_09 = raw_flights %>% filter(`Fly Date` > 200900)
+shortenedCityData = city_data %>% drop_na() %>% summarize(`Destination City` = Tag, `2017 (GDP)`)
+shortenedCityData
+```
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+```{r}
+#Creates a new table with some summarized data
+#flightsTo: Total number of flights to a destination city
+#totalPassengers: Total number of passengers travelling to a city
+#passengerDensity: Percentage of passengers to seats
+destinationCityData = flights_09 %>% group_by(`Destination City`) %>% summarize(flightsTo = n(), totalPassengers = sum(Passengers), passengerDensity = (sum(Passengers)/sum(Seats))) %>% arrange(desc(flightsTo))
+destinationCityData
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+```
+```{r}
+mergedTables = destinationCityData %>% inner_join(shortenedCityData, by="Destination City")
+```
+
+
