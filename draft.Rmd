@@ -1,0 +1,40 @@
+---
+title: "Flight Analysis"
+output: html_notebook
+---
+
+>Introduction
+
+Flight, one of mans greatest inventions has made once treacherous journeys accessible to anyone. More people today are flying than ever and it is one of the primary sources of domestic travel. This creates a problem that almost all of us have experienced. Packed airports. Whether you are at JFK or LAX or even Milwaukee Airport, sometimes it is an absolute drag to get on your flight. Using data we can examine cities and their flight patterns.
+
+>Questions
+
+What we want to know is where the mass amount of flights are coming from and where they are going. 
+Does the overall GDP of the city the airport is in play a factor in quantity of flghts? 
+What months of the year are people travelling to certain airports more often?
+What cities have the most dense airplanes travelling to and from them?
+
+>Background 
+
+Our main form of flight data is from the US Census Bureau. Our relevant variables within the dataset are found below.
+Link: https://academictorrents.com/details/a2ccf94bbb4af222bf8e69dad60a68a29f310d9a
+
+| Variable         | Description                                    |
+|------------------|------------------------------------------------|
+| `Origin City`     | Origin city name.                               |
+| `Destination City`| Destination city name  |
+| `Passengers`     | Number of passengers transported from origin to destination |
+| `Seats` |  	Number of seats available on flights from origin to destination|
+
+Our other dataset we have used is from ______. Our relevant variable are found below.
+Link: ________
+
+| Variable         | Description                                    |
+|------------------|------------------------------------------------|
+| `County/City`     | City name.                              |
+| `GDP`| Cities GDP  |
+
+The passengers and seats were used to calculate a passengerRatio which is a ratio representing how full a flight was.
+
+A factor that may impact our data is that our GDP is from 2017 and the flights from 2009. Generally the GDP will still be consistent with the GDP of our cities in 2009.
+
